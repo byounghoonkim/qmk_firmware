@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_DEL,
         KC_LCTL, KC_A_HR,  KC_S_HR,  KC_D_HR, KC_F_HR, KC_G_HR, KC_H,    KC_J_HR, KC_K_HR, KC_L_HR, KC_SCLN_HR,KC_QUOT,           KC_ENT,           KC_MNXT,
         KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,            KC_RSFT, KC_UP,
-        MO(_FN1), KC_LOPT, KC_LCMD,                            KC_SPC,                             KC_RCMD, MO(_FN1), MO(_FN3), KC_LEFT, KC_DOWN, KC_RGHT),
+        MO(_FN1), KC_CAPS, KC_LCMD,                            KC_SPC,                             KC_RCMD, MO(_FN1), MO(_FN3), KC_LEFT, KC_DOWN, KC_RGHT),
 
     [WIN_BASE] = LAYOUT_ansi_67(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
@@ -84,3 +84,12 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_FN3]     = { ENCODER_CCW_CW(_______, _______) },
 };
 #endif
+
+const uint16_t PROGMEM esc_combo[] = {KC_J_HR, KC_K_HR, COMBO_END};
+const uint16_t PROGMEM bspc_combo[] = {KC_K_HR, KC_L_HR, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_D_HR, KC_F_HR, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(esc_combo, KC_ESC),
+    COMBO(bspc_combo, KC_BSPC),
+    COMBO(tab_combo, KC_TAB),
+};
