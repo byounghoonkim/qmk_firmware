@@ -16,8 +16,10 @@
 
 #pragma once
 
-#define TAPPING_TERM 150
+#define TAPPING_TERM 200
 #define PERMISSIVE_HOLD
+#define TAP_HOLD_CAPS_DELAY 80
+#define TAPPING_TOGGLE 5
 
 #ifdef RGB_MATRIX_ENABLE
 /* RGB Matrix driver configuration */
