@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______),
 
     [FN2] = LAYOUT_ansi_67(
-        KC_TILD, KC_F1,    KC_F2,   KC_F3,   KC_F4,    KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   _______,          _______,
+        KC_TILD, KC_F1,    KC_F2,   KC_F3,   KC_F4,    KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   _______,          RGB_TOG,
         _______, _______,  _______, _______, _______,  _______, _______, _______, _______, _______, _______,  _______,  _______,  _______,          _______,
         _______, _______,  _______, _______, _______,  _______, _______, _______, _______, _______, _______,  _______,            _______,          _______,
         _______,           _______, _______, _______,  _______, BAT_LVL, _______, _______, _______, _______,  _______,            _______, _______,
@@ -79,9 +79,18 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [WIN_BASE] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [MAC_FN1]  = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
     [WIN_FN1]  = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-    [FN2]     = { ENCODER_CCW_CW(_______, _______)},
+    [FN2]     = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
 };
 #endif // ENCODER_MAP_ENABLE
+
+const uint16_t PROGMEM esc_combo[] = {KC_J_HR, KC_K_HR, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_D_HR, KC_F_HR, COMBO_END};
+const uint16_t PROGMEM bspc_combo[] = {KC_K_HR, KC_L_HR, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(esc_combo, KC_ESC),
+    COMBO(tab_combo, KC_TAB),
+    COMBO(bspc_combo, KC_BSPC),
+};
 
 // clang-format on
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
