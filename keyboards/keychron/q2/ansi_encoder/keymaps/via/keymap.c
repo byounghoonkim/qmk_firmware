@@ -27,6 +27,11 @@ enum layers {
 #define KC_TASK LGUI(KC_TAB)
 #define KC_FLXP LGUI(KC_E)
 
+enum my_keycodes {
+ // apple globe key
+ AP_GLOB = SAFE_RANGE,
+};
+
 #define KC_A_HR MT(MOD_LGUI, KC_A)
 #define KC_S_HR MT(MOD_LALT,KC_S)
 #define KC_D_HR MT(MOD_LSFT,KC_D)
@@ -44,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,  KC_RBRC,  KC_BSLS,          KC_DEL,
         KC_LCTL, KC_A_HR,  KC_S_HR,  KC_D_HR, KC_F_HR, KC_G_HR, KC_H,    KC_J_HR, KC_K_HR, KC_L_HR, KC_SCLN_HR,KC_QUOT,           KC_ENT,           KC_MNXT,
         KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,            KC_RSFT, KC_UP,
-        MO(_FN1), KC_CAPS, KC_LCMD,                            KC_SPC,                             KC_RCMD, MO(_FN1), MO(_FN3), KC_LEFT, KC_DOWN, KC_RGHT),
+        AP_GLOB, KC_LALT, KC_LCMD,                            KC_SPC,                             KC_RCMD, MO(_FN1), MO(_FN3), KC_LEFT, KC_DOWN, KC_RGHT),
 
     [WIN_BASE] = LAYOUT_ansi_67(
         KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,  KC_EQL,   KC_BSPC,          KC_MUTE,
@@ -93,3 +98,14 @@ combo_t key_combos[] = {
     COMBO(bspc_combo, KC_BSPC),
     COMBO(tab_combo, KC_TAB),
 };
+
+// clang-format on
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case AP_GLOB:
+        host_consumer_send(record->event.pressed ? AC_NEXT_KEYBOARD_LAYOUT_SELECT : 0);
+        return false;
+    }
+
+    return true;
+}
